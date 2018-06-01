@@ -23,4 +23,4 @@ before_script:
 script:
   mvn install -Dmaven.javadoc.skip=true -B -V
 after_script:
-  cd .. && tree
+  cd .. && tree && cat java/target/dependency-check-report.html
