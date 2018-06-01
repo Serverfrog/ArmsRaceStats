@@ -4,3 +4,6 @@ jdk:
 addons:
     code_climate:
         repo_token: fc8180773a63ced38be508837f5adc41f896a2671cdbe18ce5564ee471343a73
+
+cd java
+mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
