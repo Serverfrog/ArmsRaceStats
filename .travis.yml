@@ -3,9 +3,12 @@ os:
   - linux
 jdk:
   - oraclejdk8
+  - openjdk8
   - oraclejdk9
+  - openjdk9
   - oraclejdk10
-  - oraclejdk11
+  - openjdk10
+  - openjdk11
 addons:
     code_climate:
         repo_token: fc8180773a63ced38be508837f5adc41f896a2671cdbe18ce5564ee471343a73
