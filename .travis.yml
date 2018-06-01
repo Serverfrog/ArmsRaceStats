@@ -1,15 +1,15 @@
 language: java
 os:
   - linux
-dist: xenial
+ # openjdk cant build Java FX currently alone
 jdk:
   - oraclejdk8
-  - openjdk8
+#  - openjdk8
   - oraclejdk9
-  - openjdk9
+#  - openjdk9
   - oraclejdk10
-  - openjdk10
-  - openjdk11
+#  - openjdk10
+#  - openjdk11
 addons:
   apt:
     packages:
