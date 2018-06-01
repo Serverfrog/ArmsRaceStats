@@ -21,4 +21,5 @@ before_script:
   cd java
 script:
   mvn install -Dmaven.javadoc.skip=true -B -V
-  tree
+after_script:
+  cd .. && tree
