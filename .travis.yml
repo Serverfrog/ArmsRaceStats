@@ -14,10 +14,7 @@ addons:
   apt:
     packages:
       - tree
-#      - openjfx
-  code_climate:
-    repo_token: fc8180773a63ced38be508837f5adc41f896a2671cdbe18ce5564ee471343a73
-
+#      - openjf
 before_script:
   cd java
 script:
