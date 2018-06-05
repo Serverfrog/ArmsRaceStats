@@ -8,9 +8,9 @@ from CalcValueHolder import CalcValueHolder as Holder
 #
 
 
-holder = Holder(925)
-holder.updateXp(ownXp=12367, enemyXp=1064 )
-holder.team_size = 12
+holder = Holder(906)
+holder.updateXp(ownXp=2546, enemyXp=14288 )
+holder.team_size = 14
 
 
 print(fun.fp(holder))

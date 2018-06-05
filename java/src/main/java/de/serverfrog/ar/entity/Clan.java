@@ -103,48 +103,27 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
- *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
- *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+package de.serverfrog.ar.entity;
 
-package de.serverfrog.ar.util;
+import lombok.Data;
 
-import lombok.NonNull;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-public class SilentThrow {
+@Data
+@Entity
+public class Clan {
 
+    @Id
+    private String name;
 
-    public static <T, R> R applySilent(ExcFunction<T, R> function, T data) {
-        try {
-            return function.apply(data);
-        } catch (Throwable t) {
-            throwing(t);
-        }
-        throw new RuntimeException("This can't be happend");
-    }
+    private int lastElo;
 
-    public static void runSilent(ExcRunnable runnable) {
-        try {
-            runnable.run();
-        } catch (Throwable t) {
-            throwing(t);
-        }
-    }
+    private int possibleMinFamePoints;
+
+    private int possibleMaxFamePoints;
+
+    private boolean ownClan;
 
 
-    @SuppressWarnings("unchecked")
-    public static <E extends Throwable> void throwing(@NonNull Throwable e) throws E {
-        throw (E) e;
-    }
 }

@@ -103,48 +103,14 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
- *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
- *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+package de.serverfrog.ar.eao;
 
-package de.serverfrog.ar.util;
+import de.serverfrog.ar.entity.Match;
+import org.springframework.data.repository.CrudRepository;
 
-import lombok.NonNull;
+import java.util.List;
 
-public class SilentThrow {
+public interface MatchRepository extends CrudRepository<Match, Long> {
 
-
-    public static <T, R> R applySilent(ExcFunction<T, R> function, T data) {
-        try {
-            return function.apply(data);
-        } catch (Throwable t) {
-            throwing(t);
-        }
-        throw new RuntimeException("This can't be happend");
-    }
-
-    public static void runSilent(ExcRunnable runnable) {
-        try {
-            runnable.run();
-        } catch (Throwable t) {
-            throwing(t);
-        }
-    }
-
-
-    @SuppressWarnings("unchecked")
-    public static <E extends Throwable> void throwing(@NonNull Throwable e) throws E {
-        throw (E) e;
-    }
+    List<Match> findByOutcome(Match.Outcome outcome);
 }
