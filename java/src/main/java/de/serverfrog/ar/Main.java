@@ -120,11 +120,6 @@
 
 package de.serverfrog.ar;
 
-import de.serverfrog.ar.business.BMatch;
-import de.serverfrog.ar.eao.ClanRepository;
-import de.serverfrog.ar.eao.MatchRepository;
-import de.serverfrog.ar.entity.Clan;
-import de.serverfrog.ar.entity.Match;
 import de.serverfrog.ar.ui.JfxMain;
 import javafx.application.Platform;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -148,59 +143,8 @@ public class Main {
 
         JfxMain jfx = context.getBean(JfxMain.class);
         SwingUtilities.invokeLater(() -> jfx.startUp(() -> shutdown(context)));
-
-
-        MatchRepository bean = context.getBean(MatchRepository.class);
-        ClanRepository bean2 = context.getBean(ClanRepository.class);
-        BMatch bMatch = context.getBean(BMatch.class);
-        jpaTest(bean, bean2, bMatch);
     }
 
-    private static void jpaTest(MatchRepository repository, ClanRepository bean2, BMatch bMatch) {
-        Clan enemy = new Clan();
-        enemy.setName("LastEnemy");
-        Clan own = new Clan();
-        own.setName("GR-W2");
-        bean2.save(enemy);
-        bean2.save(own);
-
-        Match match = new Match();
-        match.setOutcome(Match.Outcome.DEFEAT);
-        match.setOwnClan(own);
-        match.setEnemyClan(enemy);
-
-        Match match1 = new Match();
-        match1.setOutcome(Match.Outcome.WIN);
-        match1.setOwnClan(own);
-        match1.setEnemyClan(enemy);
-
-        Match match2 = new Match();
-        match2.setOutcome(Match.Outcome.DRAW);
-        match2.setOwnClan(own);
-        match2.setEnemyClan(enemy);
-
-        Match match3 = new Match();
-        match3.setOutcome(Match.Outcome.WIN);
-        match3.setOwnClan(own);
-        match3.setEnemyClan(enemy);
-
-
-        repository.save(match);
-        repository.save(match1);
-        repository.save(match2);
-        repository.save(match3);
-
-        for (Match m : bMatch.findAllMatchesEager()) {
-            System.out.println("Findall->" + m);
-        }
-        System.out.println("------------------------");
-
-        for (Match m : bMatch.findByOutcomeEager(Match.Outcome.WIN)) {
-            System.out.println("Findall->" + m);
-        }
-
-
-    }
 
 
     private static void shutdown(ConfigurableApplicationContext context) {

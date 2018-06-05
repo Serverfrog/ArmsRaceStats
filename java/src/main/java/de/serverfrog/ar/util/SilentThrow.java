@@ -134,6 +134,15 @@ public class SilentThrow {
         throw new RuntimeException("This can't be happend");
     }
 
+    public static <R> R produceSilent(ExcProducer<R> function) {
+        try {
+            return function.produce();
+        } catch (Throwable t) {
+            throwing(t);
+        }
+        throw new RuntimeException("This can't be happend");
+    }
+
     public static void runSilent(ExcRunnable runnable) {
         try {
             runnable.run();

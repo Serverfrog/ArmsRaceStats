@@ -30,21 +30,50 @@
 
 package de.serverfrog.ar.ui;
 
+import de.serverfrog.ar.ui.util.ControllerViewTuple;
+import de.serverfrog.ar.ui.util.TabEmbeddable;
+import de.serverfrog.ar.ui.util.ViewAnnotationFinder;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.GridPane;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 @Component
 @Scope(SCOPE_PROTOTYPE)
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MainView implements Initializable {
+
+    private final ViewAnnotationFinder viewAnnotationFinder;
+    @FXML
+    private TabPane tabPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        List<ControllerViewTuple<TabEmbeddable, GridPane>> views = viewAnnotationFinder
+                .produceViewsWith(TabEmbeddable.class);
+
+        ObservableList<Tab> tabs = tabPane.getTabs();
+
+        for (ControllerViewTuple<TabEmbeddable, GridPane> view : views) {
+            TabEmbeddable controller = view.getController();
+
+            Tab tab = new Tab(controller.getName());
+            tab.setContent(controller.getContent());
+
+            tabs.add(tab);
+        }
 
     }
 }

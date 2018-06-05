@@ -58,7 +58,7 @@ public class JfxMain {
 
 
     public void startUp(Runnable onClose) {
-        JFrame frame = new JFrame("Titel");
+        JFrame frame = new JFrame("WoT Arms Race Tool");
         frame.setSize(500, 500);
 
         JFXPanel jfxPanel = new JFXPanel();

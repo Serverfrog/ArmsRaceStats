@@ -37,7 +37,8 @@ import java.net.URL;
 @AllArgsConstructor
 public enum JfxResources {
 
-    MAIN("/de/serverfrog/ar/ui/main.fxml");
+    MAIN("/de/serverfrog/ar/ui/main.fxml"),
+    MATCH_INPUT("/de/serverfrog/ar/ui/tab/matchInput.fxml");
 
     private final String path;
 

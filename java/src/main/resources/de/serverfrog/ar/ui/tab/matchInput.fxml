@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="main" maxHeight="1.7976931348623157E308"
+          maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="100.0" xmlns="http://javafx.com/javafx/10.0.1"
+          fx:controller="de.serverfrog.ar.ui.tab.MatchInput">
+    <rowConstraints>
+        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
+    </columnConstraints>
+    <children>
+        <Label text="Date of Match" GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets right="15.0"/>
+            </GridPane.margin>
+        </Label>
+        <DatePicker fx:id="matchDate" GridPane.columnIndex="1"/>
+        <Label text="Outcome" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets right="15.0"/>
+            </GridPane.margin>
+        </Label>
+        <ComboBox fx:id="outcome" prefWidth="150.0" visibleRowCount="3" GridPane.columnIndex="3">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </ComboBox>
+    </children>
+</GridPane>
