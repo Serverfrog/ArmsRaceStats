@@ -13,25 +13,32 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package de.serverfrog.ar.ui.tab;
 
-package de.serverfrog.ar.ui.util;
+import de.serverfrog.ar.entity.Clan;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import lombok.Data;
 
-import lombok.AllArgsConstructor;
+@Data
+public class MatchModel {
 
-import java.net.URL;
+    private StringProperty ownClanName = new SimpleStringProperty();
 
-@AllArgsConstructor
-public enum JfxResources {
 
-    MAIN("/de/serverfrog/ar/ui/main.fxml"),
-    MATCH_INPUT("/de/serverfrog/ar/ui/tab/matchInput.fxml"),
-    CREATE_CLAN("/de/serverfrog/ar/ui/dialog/createClan.fxml"),
-    SEARCH_CLAN("/de/serverfrog/ar/ui/dialog/searchClan.fxml");
+    private StringProperty enemyClanName = new SimpleStringProperty();
 
-    private final String path;
+    private Clan ownClan;
+    private Clan enemyClan;
 
-    public URL getResource() {
-        return getClass().getResource(path);
+
+    public void updateOwnClan(Clan ownClan) {
+        this.ownClan = ownClan;
+        ownClanName.set(ownClan.getName());
     }
 
+    public void updateEnemyClan(Clan enemyClan) {
+        this.enemyClan = enemyClan;
+        enemyClanName.set(enemyClan.getName());
+    }
 }

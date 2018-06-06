@@ -44,7 +44,9 @@ public class JfxMain {
 
     public void startUp(Runnable onClose) {
         JFrame frame = new JFrame("WoT Arms Race Tool");
-        frame.setSize(500, 500);
+        frame.setSize(750, 500);
+
+        frame.setLocationByPlatform(true);
 
         JFXPanel jfxPanel = new JFXPanel();
         frame.add(jfxPanel);
@@ -64,5 +66,6 @@ public class JfxMain {
         ControllerViewTuple<MainView, GridPane> view = JfxUtil.createView(beanFactory, JfxResources.MAIN);
         Scene scene = new Scene(view.getView());
         panel.setScene(scene);
+
     }
 }

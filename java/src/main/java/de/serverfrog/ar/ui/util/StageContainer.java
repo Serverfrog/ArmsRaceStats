@@ -13,25 +13,31 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 package de.serverfrog.ar.ui.util;
 
-import lombok.AllArgsConstructor;
+import javafx.stage.Stage;
+import lombok.Setter;
 
-import java.net.URL;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-@AllArgsConstructor
-public enum JfxResources {
+public abstract class StageContainer<E> {
 
-    MAIN("/de/serverfrog/ar/ui/main.fxml"),
-    MATCH_INPUT("/de/serverfrog/ar/ui/tab/matchInput.fxml"),
-    CREATE_CLAN("/de/serverfrog/ar/ui/dialog/createClan.fxml"),
-    SEARCH_CLAN("/de/serverfrog/ar/ui/dialog/searchClan.fxml");
+    @Setter
+    private Supplier<Stage> stageSupplier;
 
-    private final String path;
+    @Setter
+    private Consumer<E> returnConsumer;
 
-    public URL getResource() {
-        return getClass().getResource(path);
+    protected void closeStage() {
+        Stage stage = stageSupplier.get();
+        stage.close();
+
+        returnConsumer.accept(getValue());
     }
+
+    protected abstract E getValue();
+
+    protected abstract String getTitle();
 
 }

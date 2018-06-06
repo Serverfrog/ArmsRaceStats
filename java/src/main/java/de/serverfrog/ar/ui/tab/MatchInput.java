@@ -16,15 +16,19 @@
 package de.serverfrog.ar.ui.tab;
 
 import de.serverfrog.ar.entity.Match;
+import de.serverfrog.ar.ui.dialog.SearchClan;
 import de.serverfrog.ar.ui.util.JfxResources;
+import de.serverfrog.ar.ui.util.JfxUtil;
 import de.serverfrog.ar.ui.util.JfxView;
 import de.serverfrog.ar.ui.util.TabEmbeddable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -40,6 +44,11 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MatchInput implements TabEmbeddable, Initializable {
 
+
+    private final BeanFactory beanFactory;
+    @FXML
+    private Label ownClanName;
+
     @FXML
     private DatePicker matchDate;
 
@@ -48,6 +57,9 @@ public class MatchInput implements TabEmbeddable, Initializable {
 
     @FXML
     private GridPane main;
+    @FXML
+    private Label enemyClanName;
+    private MatchModel model;
 
     @Override
     public String getName() {
@@ -61,7 +73,20 @@ public class MatchInput implements TabEmbeddable, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.model = new MatchModel();
+
         outcome.getItems().addAll(Match.Outcome.values());
         outcome.getSelectionModel().clearAndSelect(0);
+
+        ownClanName.textProperty().bind(model.getOwnClanName());
+        enemyClanName.textProperty().bind(model.getEnemyClanName());
+    }
+
+    public void chooseOwnClan() {
+        JfxUtil.openDialog(beanFactory, SearchClan.class, (c) -> this.model.updateOwnClan(c));
+    }
+
+    public void chooseEnemyClan() {
+        JfxUtil.openDialog(beanFactory, SearchClan.class, (c) -> this.model.updateEnemyClan(c));
     }
 }

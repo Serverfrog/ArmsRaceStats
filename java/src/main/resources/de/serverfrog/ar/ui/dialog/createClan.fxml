@@ -15,17 +15,54 @@
   ~     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
           minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.1"
           fx:controller="de.serverfrog.ar.ui.dialog.CreateClan">
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0"/>
+        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0"/>
     </rowConstraints>
     <columnConstraints>
-        <ColumnConstraints minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
+        <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
     </columnConstraints>
+    <children>
+        <Label text="Name" GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </Label>
+        <Label text="Current Elo" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+        </Label>
+        <Spinner fx:id="elo" editable="true" GridPane.columnIndex="3">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </Spinner>
+        <TextField fx:id="name" promptText="Clan Name" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </TextField>
+        <CheckBox fx:id="own" mnemonicParsing="false" text="Own Clan" GridPane.columnIndex="1"
+                  GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </CheckBox>
+        <Button mnemonicParsing="false" onAction="#savePressed" text="Save" GridPane.columnIndex="3"
+                GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </Button>
+    </children>
 </GridPane>
