@@ -44,7 +44,7 @@ public class MatchInput implements TabEmbeddable, Initializable {
     private DatePicker matchDate;
 
     @FXML
-    private ComboBox outcome;
+    private ComboBox<Match.Outcome> outcome;
 
     @FXML
     private GridPane main;

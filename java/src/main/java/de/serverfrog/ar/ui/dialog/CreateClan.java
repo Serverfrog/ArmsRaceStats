@@ -13,10 +13,20 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.serverfrog.ar.util;
+package de.serverfrog.ar.ui.dialog;
 
-@FunctionalInterface
-public interface ExcRunnable {
+import de.serverfrog.ar.ui.util.JfxResources;
+import de.serverfrog.ar.ui.util.JfxView;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-    void run() throws Throwable;
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
+
+@JfxView(resource = JfxResources.MATCH_INPUT)
+@Component
+@Scope(SCOPE_PROTOTYPE)
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class CreateClan {
 }

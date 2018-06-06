@@ -44,15 +44,8 @@ public class ViewAnnotationFinder {
         for (String className : classNames) {
             Class<T> clazz = (Class<T>) context.getType(className);
 
-            JfxView annotation = clazz.getAnnotation(JfxView.class);
 
-            if (annotation == null) {
-                throw new UnsupportedOperationException("View has no JfxView Annotation. Class=" + clazz);
-            }
-
-            JfxResources resource = annotation.resource();
-
-            views.add(JfxUtil.createView(context, resource));
+            views.add(JfxUtil.createView(context, clazz));
         }
 
         return views;
