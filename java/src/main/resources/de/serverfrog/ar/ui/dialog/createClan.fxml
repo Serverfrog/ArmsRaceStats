@@ -32,6 +32,11 @@
         <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="100.0"/>
     </columnConstraints>
     <children>
+        <TextField fx:id="name" promptText="Clan Name" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </TextField>
         <Label text="Name" GridPane.halignment="RIGHT">
             <GridPane.margin>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
@@ -47,11 +52,6 @@
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
             </GridPane.margin>
         </Spinner>
-        <TextField fx:id="name" promptText="Clan Name" GridPane.columnIndex="1">
-            <GridPane.margin>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </GridPane.margin>
-        </TextField>
         <CheckBox fx:id="own" mnemonicParsing="false" text="Own Clan" GridPane.columnIndex="1"
                   GridPane.halignment="RIGHT" GridPane.rowIndex="1">
             <GridPane.margin>

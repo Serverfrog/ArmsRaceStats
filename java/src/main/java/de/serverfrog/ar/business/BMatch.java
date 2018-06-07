@@ -17,6 +17,8 @@
 package de.serverfrog.ar.business;
 
 import de.serverfrog.ar.eao.MatchRepository;
+import de.serverfrog.ar.eao.PlayerRepository;
+import de.serverfrog.ar.eao.PlayerStatRepository;
 import de.serverfrog.ar.entity.Match;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,8 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
 public class BMatch {
 
     private final MatchRepository matchRepository;
+    private final PlayerRepository playerRepository;
+    private final PlayerStatRepository playerStatRepository;
 
     @Transactional
     public List<Match> findAllMatchesEager() {
@@ -56,4 +60,17 @@ public class BMatch {
         return byOutcome;
     }
 
+    public void save(Match match) {
+
+        match.getOwnTeam().forEach((p) -> {
+            playerRepository.save(p.getPlayer());
+            playerStatRepository.save(p);
+        });
+        match.getEnemyTeam().forEach((p) -> {
+            playerRepository.save(p.getPlayer());
+            playerStatRepository.save(p);
+        });
+
+
+    }
 }

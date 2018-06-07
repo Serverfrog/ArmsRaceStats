@@ -15,7 +15,7 @@
 
 package de.serverfrog.ar.ui.util;
 
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.ScrollPane;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
@@ -36,22 +35,17 @@ public class ViewAnnotationFinder {
     private final ApplicationContext context;
 
     @SuppressWarnings("unchecked")
-    public <T extends TabEmbeddable> List<ControllerViewTuple<T, GridPane>> produceViewsWith(Class<T> interFace) {
+    public <T extends TabEmbeddable> List<ControllerViewTuple<T, ScrollPane>> produceViewsWith(Class<T> interFace) {
         String[] classNames = context.getBeanNamesForType(interFace);
 
-        List<ControllerViewTuple<T, GridPane>> views = new ArrayList<>();
+        List<ControllerViewTuple<T, ScrollPane>> views = new ArrayList<>();
 
         for (String className : classNames) {
             Class<T> clazz = (Class<T>) context.getType(className);
-
-
             views.add(JfxUtil.createView(context, clazz));
         }
 
         return views;
     }
 
-    public <T> Map<String, T> findViewsWith(Class<T> interFace) {
-        return context.getBeansOfType(interFace);
-    }
 }

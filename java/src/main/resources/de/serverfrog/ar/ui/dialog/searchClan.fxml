@@ -15,7 +15,6 @@
   ~     along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -44,8 +43,8 @@
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
             </GridPane.margin>
         </Button>
-        <Button mnemonicParsing="false" onAction="#chooseClan" text="Choose Clan" GridPane.columnIndex="1"
-                GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+        <Button fx:id="chooseButton" disable="true" mnemonicParsing="false" onAction="#chooseClan" text="Choose Clan"
+                GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
             </GridPane.margin>

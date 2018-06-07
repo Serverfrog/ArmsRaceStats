@@ -21,9 +21,9 @@ import de.serverfrog.ar.ui.util.ViewAnnotationFinder;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.GridPane;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -44,21 +44,22 @@ public class MainView implements Initializable {
     @FXML
     private TabPane tabPane;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<ControllerViewTuple<TabEmbeddable, GridPane>> views = viewAnnotationFinder
+        List<ControllerViewTuple<TabEmbeddable, ScrollPane>> views = viewAnnotationFinder
                 .produceViewsWith(TabEmbeddable.class);
 
         ObservableList<Tab> tabs = tabPane.getTabs();
 
-        for (ControllerViewTuple<TabEmbeddable, GridPane> view : views) {
+        for (ControllerViewTuple<TabEmbeddable, ScrollPane> view : views) {
             TabEmbeddable controller = view.getController();
 
             Tab tab = new Tab(controller.getName());
             tab.setContent(controller.getContent());
-
             tabs.add(tab);
         }
 
     }
+
 }

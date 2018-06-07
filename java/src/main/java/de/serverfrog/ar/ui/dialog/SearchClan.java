@@ -24,6 +24,7 @@ import de.serverfrog.ar.ui.util.StageContainer;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,6 +35,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
@@ -47,6 +49,10 @@ public class SearchClan extends StageContainer<Clan> implements Initializable {
 
     private final BeanFactory beanFactory;
     private final ClanRepository clanRepository;
+
+    @FXML
+    private Button chooseButton;
+
     @FXML
     private TableView<Clan> clans;
     private Clan foundClan;
@@ -66,6 +72,7 @@ public class SearchClan extends StageContainer<Clan> implements Initializable {
         initTable();
         refreshClans();
 
+        chooseButton.disableProperty().bind(clans.getSelectionModel().selectedItemProperty().isNull());
     }
 
 
@@ -79,8 +86,11 @@ public class SearchClan extends StageContainer<Clan> implements Initializable {
     }
 
     private void addClan(Clan c) {
-        System.out.println("Created Clan = " + c);
         refreshClans();
+        Optional<Clan> first = clans.getItems().stream()
+                .filter(clan -> clan.getName().equals(c.getName()))
+                .findFirst();
+        clans.getSelectionModel().select(first.orElse(null));
     }
 
     private void refreshClans() {

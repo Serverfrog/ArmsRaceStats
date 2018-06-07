@@ -12,40 +12,26 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.serverfrog.ar.entity;
 
-import lombok.Data;
+package de.serverfrog.ar.ui.components;
 
-import javax.persistence.*;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
+import lombok.RequiredArgsConstructor;
 
-@Data
-@Entity
-public class PlayerStat {
+import java.util.function.Function;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
-    @ManyToOne
-    private Player player;
+@RequiredArgsConstructor
+public class FunctionCellFactory<S, T> implements Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>> {
 
-    private int damage;
-    private int teamDamage;
-    private int support;
-    private int blocked;
+    private final Function<S, T> function;
 
-    private boolean survived;
 
-    private int xp;
-
-    private int shoots;
-    private int shootsHits;
-    private int shootsPen;
-    private int splashed;
-    private int hits;
-    private int hitsPen;
-
-    @ManyToOne
-    private Tank tank;
-
+    @Override
+    public ObservableValue<T> call(TableColumn.CellDataFeatures<S, T> param) {
+        return new ReadOnlyObjectWrapper<>(function.apply(param.getValue()));
+    }
 }

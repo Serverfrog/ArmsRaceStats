@@ -16,9 +16,14 @@
 package de.serverfrog.ar.ui.tab;
 
 import de.serverfrog.ar.entity.Clan;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import de.serverfrog.ar.entity.Match;
+import de.serverfrog.ar.entity.PlayerStat;
+import javafx.beans.property.*;
 import lombok.Data;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Data
 public class MatchModel {
@@ -28,17 +33,48 @@ public class MatchModel {
 
     private StringProperty enemyClanName = new SimpleStringProperty();
 
+
+    private ObjectProperty<Match.Outcome> outcome = new SimpleObjectProperty<>(Match.Outcome.WIN);
+
+    private ObjectProperty<LocalDate> matchDate = new SimpleObjectProperty<>(LocalDate.now());
+
+    private ListProperty<PlayerStat> ownPlayers = new SimpleListProperty<>();
+    private ListProperty<PlayerStat> enemyPlayers = new SimpleListProperty<>();
+
     private Clan ownClan;
     private Clan enemyClan;
 
 
     public void updateOwnClan(Clan ownClan) {
         this.ownClan = ownClan;
-        ownClanName.set(ownClan.getName());
+        if (ownClan != null) {
+            ownClanName.set(ownClan.getName());
+        } else {
+            ownClanName.set("<choose>");
+        }
     }
 
     public void updateEnemyClan(Clan enemyClan) {
         this.enemyClan = enemyClan;
-        enemyClanName.set(enemyClan.getName());
+        if (enemyClan != null) {
+            enemyClanName.set(enemyClan.getName());
+        } else {
+            enemyClanName.set("<choose>");
+        }
+    }
+
+    public Match buildMatch() {
+        Match match = new Match();
+        match.setOutcome(outcome.get());
+        ZoneId zoneId = ZoneId.systemDefault();
+
+
+        match.setMatchTime(Date.from(matchDate.get().atStartOfDay(zoneId).toInstant()));
+
+        match.setOwnClan(ownClan);
+        match.setOwnTeam(ownPlayers.get());
+        match.setEnemyClan(enemyClan);
+        match.setEnemyTeam(enemyPlayers.get());
+        return match;
     }
 }

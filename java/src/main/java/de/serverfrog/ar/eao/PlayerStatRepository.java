@@ -12,40 +12,12 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.serverfrog.ar.entity;
 
-import lombok.Data;
 
-import javax.persistence.*;
+package de.serverfrog.ar.eao;
 
-@Data
-@Entity
-public class PlayerStat {
+import de.serverfrog.ar.entity.PlayerStat;
+import org.springframework.data.repository.CrudRepository;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @ManyToOne
-    private Player player;
-
-    private int damage;
-    private int teamDamage;
-    private int support;
-    private int blocked;
-
-    private boolean survived;
-
-    private int xp;
-
-    private int shoots;
-    private int shootsHits;
-    private int shootsPen;
-    private int splashed;
-    private int hits;
-    private int hitsPen;
-
-    @ManyToOne
-    private Tank tank;
-
+public interface PlayerStatRepository extends CrudRepository<PlayerStat, String> {
 }

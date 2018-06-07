@@ -15,12 +15,13 @@
 
 package de.serverfrog.ar.ui.util;
 
-import javafx.scene.layout.GridPane;
+
+import javafx.scene.control.ScrollPane;
 
 public interface TabEmbeddable {
 
     String getName();
 
-    GridPane getContent();
+    ScrollPane getContent();
 
 }

@@ -29,28 +29,26 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_SINGLETON;
 
 @Component
-@Scope(SCOPE_PROTOTYPE)
+@Scope(SCOPE_SINGLETON)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JfxMain {
 
     private final BeanFactory beanFactory;
-
+    private Scene scene;
 
     public void startUp(Runnable onClose) {
         JFrame frame = new JFrame("WoT Arms Race Tool");
-        frame.setSize(750, 500);
+        frame.setSize(900, 750);
 
         frame.setLocationByPlatform(true);
 
-        JFXPanel jfxPanel = new JFXPanel();
-        frame.add(jfxPanel);
-        frame.setVisible(true);
 
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -59,13 +57,18 @@ public class JfxMain {
             }
         });
 
+        frame.setLayout(new BorderLayout());
+
+        JFXPanel jfxPanel = new JFXPanel();
+        frame.add(jfxPanel, BorderLayout.CENTER);
+        frame.setVisible(true);
+
         Platform.runLater(() -> start(jfxPanel));
     }
 
     private void start(JFXPanel panel) {
         ControllerViewTuple<MainView, GridPane> view = JfxUtil.createView(beanFactory, JfxResources.MAIN);
-        Scene scene = new Scene(view.getView());
+        scene = new Scene(view.getView());
         panel.setScene(scene);
-
     }
 }

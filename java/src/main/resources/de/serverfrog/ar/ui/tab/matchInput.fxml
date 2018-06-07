@@ -18,65 +18,119 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="main" maxHeight="1.7976931348623157E308"
-          maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-          xmlns="http://javafx.com/javafx/10.0.1" fx:controller="de.serverfrog.ar.ui.tab.MatchInput">
-    <rowConstraints>
-        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0"/>
-        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0"/>
-    </rowConstraints>
-    <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
-    </columnConstraints>
-    <children>
-        <Label text="Date of Match" GridPane.halignment="RIGHT">
-            <GridPane.margin>
-                <Insets right="15.0"/>
-            </GridPane.margin>
-        </Label>
-        <DatePicker fx:id="matchDate" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                    minWidth="-Infinity" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
-        <Label text="Outcome" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-            <GridPane.margin>
-                <Insets right="15.0"/>
-            </GridPane.margin>
-        </Label>
-        <ComboBox fx:id="outcome" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                  visibleRowCount="3" GridPane.columnIndex="4" GridPane.columnSpan="2">
-            <GridPane.margin>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </GridPane.margin>
-        </ComboBox>
-        <Button mnemonicParsing="false" onAction="#chooseOwnClan" text="Choose" GridPane.columnIndex="2"
-                GridPane.rowIndex="1"/>
-        <Label text="Own Clan" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-            <GridPane.margin>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </GridPane.margin>
-        </Label>
-        <Label fx:id="ownClanName" text="&lt;Please Choose&gt;" GridPane.columnIndex="1" GridPane.halignment="RIGHT"
-               GridPane.rowIndex="1">
-            <GridPane.margin>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </GridPane.margin>
-        </Label>
-        <Label text="Enemy Clan" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-            <GridPane.margin>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </GridPane.margin>
-        </Label>
-        <Label fx:id="enemyClanName" text="&lt;Please Choose&gt;" GridPane.columnIndex="4" GridPane.halignment="RIGHT"
-               GridPane.rowIndex="1">
-            <GridPane.margin>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
-            </GridPane.margin>
-        </Label>
-        <Button mnemonicParsing="false" onAction="#chooseEnemyClan" text="Choose" GridPane.columnIndex="5"
-                GridPane.rowIndex="1"/>
-    </children>
-</GridPane>
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:id="main" fitToHeight="true" fitToWidth="true" maxHeight="-Infinity"
+            maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/10.0.1"
+            fx:controller="de.serverfrog.ar.ui.tab.MatchInput">
+    <content>
+        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                  minWidth="-Infinity">
+            <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="100.0"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity"/>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0"/>
+            </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="-Infinity"/>
+            </columnConstraints>
+            <children>
+                <Label text="Date of Match" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets right="15.0"/>
+                    </GridPane.margin>
+                </Label>
+                <DatePicker fx:id="matchDate" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                            minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.columnSpan="2">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </DatePicker>
+                <Label text="Outcome" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                    <GridPane.margin>
+                        <Insets right="15.0"/>
+                    </GridPane.margin>
+                </Label>
+                <ComboBox fx:id="outcome" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                          visibleRowCount="3" GridPane.columnIndex="4" GridPane.columnSpan="2">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </ComboBox>
+                <Button mnemonicParsing="false" onAction="#chooseOwnClan" text="Choose" GridPane.columnIndex="2"
+                        GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets right="15.0"/>
+                    </GridPane.margin>
+                </Button>
+                <Label text="Own Clan" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </Label>
+                <Label fx:id="ownClanName" text="&lt;Please Choose&gt;" GridPane.columnIndex="1"
+                       GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </Label>
+                <Label text="Enemy Clan" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </Label>
+                <Label fx:id="enemyClanName" text="&lt;Please Choose&gt;" GridPane.columnIndex="4"
+                       GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </Label>
+                <Button mnemonicParsing="false" onAction="#chooseEnemyClan" text="Choose" GridPane.columnIndex="5"
+                        GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets right="15.0"/>
+                    </GridPane.margin>
+                </Button>
+                <TableView fx:id="ownPlayers" editable="true" maxHeight="1.7976931348623157E308"
+                           maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                           GridPane.columnSpan="6" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </TableView>
+                <TableView fx:id="enemyPlayers" editable="true" maxHeight="1.7976931348623157E308"
+                           maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                           GridPane.columnSpan="6" GridPane.rowIndex="4">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </TableView>
+                <Button mnemonicParsing="false" onAction="#newOwnPlayer" text="New Player" GridPane.rowIndex="3">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#newEnemyPlayer" text="New Player" GridPane.rowIndex="5">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#saveMatch" text="Save" GridPane.columnIndex="5"
+                        GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                    <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                    </GridPane.margin>
+                </Button>
+            </children>
+        </GridPane>
+    </content>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</ScrollPane>

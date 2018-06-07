@@ -12,40 +12,23 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.serverfrog.ar.entity;
+
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Data
 @Entity
-public class PlayerStat {
+public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private String name;
 
     @ManyToOne
-    private Player player;
-
-    private int damage;
-    private int teamDamage;
-    private int support;
-    private int blocked;
-
-    private boolean survived;
-
-    private int xp;
-
-    private int shoots;
-    private int shootsHits;
-    private int shootsPen;
-    private int splashed;
-    private int hits;
-    private int hitsPen;
-
-    @ManyToOne
-    private Tank tank;
-
+    private Clan clan;
 }
